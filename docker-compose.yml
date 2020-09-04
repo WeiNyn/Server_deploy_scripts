@@ -1,0 +1,25 @@
+  
+version: '3.0'
+
+services:
+  rasa:
+    image: nguyenhuy17798/test_rasa_image:latest
+    container_name: rasa
+    networks: ['rasa-network']
+    ports:
+    - "5005:5005"
+    volumes:
+    - "C:/Users/nguye/Documents/VANLANG/Rasa_HR_QnA:/app/"
+    command:
+    - run
+
+  action_server:
+    image: rasa/rasa-sdk:latest
+    container_name: action_server
+    networks: ['rasa-network']
+    ports:
+    - "5055:5055"
+    volumes:
+    - "C:/Users/nguye/Documents/VANLANG/Rasa_HR_QnA:/app/actions"
+
+networks: {rasa-network: {}}
